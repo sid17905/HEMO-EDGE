@@ -1,0 +1,20 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // User profiles — own profile only
+    match /users/{uid} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+
+    // Scan results — own scans only
+    match /scans/{uid}/results/{docId} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+
+    // Doctor–patient links — doctor only
+    match /doctors/{doctorUid}/patients/{patientUid} {
+      allow read, write: if request.auth != null && request.auth.uid == doctorUid;
+    }
+  }
+}
