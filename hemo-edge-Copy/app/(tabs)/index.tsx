@@ -1,4 +1,6 @@
 // FILE: app/(tabs)/index.tsx
+// Phase 5 — Pillar H: all hardcoded strings replaced with t() calls.
+// No JSX restructuring — string replacement only.
 import React, { useEffect, useState, useCallback, useRef } from 'react';
 import {
   View, Text, ScrollView, StyleSheet, TouchableOpacity,
@@ -23,6 +25,7 @@ import {
   type UserProfile,
   type SystemStats,
 } from '@/lib/firestore-service';
+import { useTranslation } from '@/lib/i18n';
 
 // ─────────────────────────────────────────────────────────────────────────────
 //  Design tokens
@@ -42,17 +45,17 @@ const T = {
   warning:        '#d97706',
   danger:         '#ba1a1a',
   info:           '#2563eb',
-  patientAccent:  '#7c3aed', // purple tint for patient views
+  patientAccent:  '#7c3aed',
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
-//  Root component — decides which dashboard to render
+//  Root component
 // ─────────────────────────────────────────────────────────────────────────────
 
 export default function DashboardScreen() {
   const { user, role } = useAuthContext();
 
-  if (!user) return null; // layout already redirects, safety net
+  if (!user) return null;
 
   return role === 'doctor'
     ? <DoctorDashboard />
@@ -66,6 +69,7 @@ export default function DashboardScreen() {
 function DoctorDashboard() {
   const router = useRouter();
   const { user } = useAuthContext();
+  const { t } = useTranslation();
 
   const [stats,          setStats]          = useState<SystemStats | null>(null);
   const [recentScans,    setRecentScans]    = useState<StoredScanResult[]>([]);
@@ -97,7 +101,6 @@ function DoctorDashboard() {
     }
   }, [user]);
 
-  // Initial load + 30-second polling (real-time-lite)
   useEffect(() => {
     fetchAll();
     intervalRef.current = setInterval(() => fetchAll(true), 30_000);
@@ -114,7 +117,7 @@ function DoctorDashboard() {
       <View style={styles.header}>
         <View style={styles.brand}>
           <Activity color={T.primary} size={22} />
-          <Text style={styles.brandText}>HEMO-EDGE</Text>
+          <Text style={styles.brandText}>{t('common.appName')}</Text>
         </View>
         <View style={styles.headerActions}>
           <TouchableOpacity style={styles.iconButton}>
@@ -138,8 +141,8 @@ function DoctorDashboard() {
       >
         {/* Welcome */}
         <View style={styles.welcome}>
-          <Text style={styles.welcomeLabel}>DOCTOR · LABORATORY DASHBOARD</Text>
-          <Text style={styles.welcomeTitle}>Precision Diagnostics</Text>
+          <Text style={styles.welcomeLabel}>{t('dashboard.doctor.label')}</Text>
+          <Text style={styles.welcomeTitle}>{t('dashboard.doctor.title')}</Text>
         </View>
 
         {/* Action cards */}
@@ -149,11 +152,11 @@ function DoctorDashboard() {
               <Microscope color="#fff" size={22} />
             </View>
             <View>
-              <Text style={styles.cardTitleLight}>Scan Sample</Text>
-              <Text style={styles.cardDescLight}>Initiate real-time hematology analysis using edge vision.</Text>
+              <Text style={styles.cardTitleLight}>{t('dashboard.doctor.scanSample')}</Text>
+              <Text style={styles.cardDescLight}>{t('dashboard.doctor.scanDesc')}</Text>
             </View>
             <View style={styles.cardFooter}>
-              <Text style={styles.cardFooterTextLight}>Start Analysis</Text>
+              <Text style={styles.cardFooterTextLight}>{t('dashboard.doctor.startAnalysis')}</Text>
               <ArrowRight color="#fff" size={15} />
             </View>
           </TouchableOpacity>
@@ -163,28 +166,28 @@ function DoctorDashboard() {
               <FileUp color={T.primary} size={22} />
             </View>
             <View>
-              <Text style={styles.cardTitleDark}>Upload Report</Text>
-              <Text style={styles.cardDescDark}>Digest PDF or image reports into actionable data.</Text>
+              <Text style={styles.cardTitleDark}>{t('dashboard.doctor.uploadReport')}</Text>
+              <Text style={styles.cardDescDark}>{t('dashboard.doctor.uploadDesc')}</Text>
             </View>
             <View style={styles.cardFooter}>
-              <Text style={styles.cardFooterTextDark}>Select Files</Text>
+              <Text style={styles.cardFooterTextDark}>{t('dashboard.doctor.selectFiles')}</Text>
               <PlusCircle color={T.primary} size={15} />
             </View>
           </TouchableOpacity>
         </View>
 
-        {/* Stats grid — real data */}
+        {/* Stats grid */}
         <View style={styles.statsGrid}>
-          <StatCard label="TODAY'S TESTS"  value={String(stats?.todayTests ?? 0)} />
-          <StatCard label="PENDING"        value={String(stats?.pending   ?? 0)} valueColor={T.primary} />
-          <StatCard label="CRITICAL"       value={String(stats?.critical  ?? 0)} valueColor={T.danger}  labelColor={T.danger} />
-          <StatCard label="UPTIME"         value={`${stats?.uptimePct ?? 0}%`} />
+          <StatCard label={t('dashboard.doctor.todayTests')} value={String(stats?.todayTests ?? 0)} />
+          <StatCard label={t('dashboard.doctor.pending')}    value={String(stats?.pending   ?? 0)} valueColor={T.primary} />
+          <StatCard label={t('dashboard.doctor.critical')}   value={String(stats?.critical  ?? 0)} valueColor={T.danger} labelColor={T.danger} />
+          <StatCard label={t('dashboard.doctor.uptime')}     value={`${stats?.uptimePct ?? 0}%`} />
         </View>
 
         {/* Linked patients */}
         {linkedPatients.length > 0 && (
           <>
-            <SectionHeader title="Patient Roster" onViewAll={() => router.push('/(tabs)/patients')} />
+            <SectionHeader title={t('dashboard.doctor.patientRoster')} onViewAll={() => router.push('/(tabs)/patients')} />
             <View style={styles.patientList}>
               {linkedPatients.map(p => (
                 <TouchableOpacity
@@ -210,10 +213,10 @@ function DoctorDashboard() {
         )}
 
         {/* Recent scans */}
-        <SectionHeader title="Recent Analyses" onViewAll={() => router.push('/(tabs)/explore')} />
+        <SectionHeader title={t('dashboard.doctor.recentAnalyses')} onViewAll={() => router.push('/(tabs)/explore')} />
         <View style={styles.activityList}>
           {recentScans.length === 0
-            ? <EmptyState message="No scans yet. Start a new analysis above." />
+            ? <EmptyState message={t('dashboard.doctor.noScans')} />
             : recentScans.map(scan => (
               <ScanActivityItem key={scan.id} scan={scan} onPress={() => router.push({ pathname: '/analysis-detail', params: { id: scan.id } })} />
             ))
@@ -234,6 +237,7 @@ function DoctorDashboard() {
 function PatientDashboard() {
   const router = useRouter();
   const { user } = useAuthContext();
+  const { t } = useTranslation();
 
   const [recentScans, setRecentScans] = useState<StoredScanResult[]>([]);
   const [loading,     setLoading]     = useState(true);
@@ -274,7 +278,7 @@ function PatientDashboard() {
       <View style={[styles.header, { backgroundColor: '#faf8ffcc' }]}>
         <View style={styles.brand}>
           <Heart color={T.patientAccent} size={22} />
-          <Text style={[styles.brandText, { color: T.patientAccent }]}>HEMO-EDGE</Text>
+          <Text style={[styles.brandText, { color: T.patientAccent }]}>{t('common.appName')}</Text>
         </View>
         <TouchableOpacity style={styles.iconButton}>
           <Bell color={T.textSecondary} size={22} />
@@ -288,8 +292,8 @@ function PatientDashboard() {
       >
         {/* Welcome */}
         <View style={styles.welcome}>
-          <Text style={[styles.welcomeLabel, { color: T.patientAccent }]}>MY HEALTH DASHBOARD</Text>
-          <Text style={styles.welcomeTitle}>Your Health,{'\n'}At a Glance</Text>
+          <Text style={[styles.welcomeLabel, { color: T.patientAccent }]}>{t('dashboard.patient.label')}</Text>
+          <Text style={styles.welcomeTitle}>{t('dashboard.patient.title')}</Text>
         </View>
 
         {/* Latest result card */}
@@ -300,23 +304,23 @@ function PatientDashboard() {
           >
             <View style={styles.heroCardTop}>
               <View>
-                <Text style={styles.heroCardLabel}>LATEST RESULT</Text>
+                <Text style={styles.heroCardLabel}>{t('dashboard.patient.latestResult')}</Text>
                 <Text style={styles.heroCardDate}>{new Date(lastScan.analyzedOn).toLocaleDateString('en-IN', { dateStyle: 'medium' })}</Text>
               </View>
               <View style={[styles.riskBadge, { backgroundColor: riskColor + '18', borderColor: riskColor + '40' }]}>
-                <Text style={[styles.riskBadgeText, { color: riskColor }]}>{riskLevel} RISK</Text>
+                <Text style={[styles.riskBadgeText, { color: riskColor }]}>{riskLevel}{t('dashboard.patient.riskSuffix')}</Text>
               </View>
             </View>
             <Text style={styles.heroCardSummary} numberOfLines={2}>{lastScan.summary}</Text>
             <View style={styles.cardFooter}>
-              <Text style={[styles.cardFooterTextDark, { color: T.patientAccent }]}>View Full Report</Text>
+              <Text style={[styles.cardFooterTextDark, { color: T.patientAccent }]}>{t('dashboard.patient.viewFullReport')}</Text>
               <ArrowRight color={T.patientAccent} size={15} />
             </View>
           </TouchableOpacity>
         ) : (
           <View style={styles.heroCard}>
-            <Text style={styles.heroCardLabel}>NO RESULTS YET</Text>
-            <Text style={styles.heroCardSummary}>Start your first scan or upload a lab report to see your results here.</Text>
+            <Text style={styles.heroCardLabel}>{t('dashboard.patient.noResults')}</Text>
+            <Text style={styles.heroCardSummary}>{t('dashboard.patient.noResultsDesc')}</Text>
           </View>
         )}
 
@@ -326,10 +330,10 @@ function PatientDashboard() {
             <View style={[styles.cardIconWrapper, { backgroundColor: '#ffffff25' }]}>
               <Microscope color="#fff" size={22} />
             </View>
-            <Text style={styles.cardTitleLight}>New Scan</Text>
-            <Text style={styles.cardDescLight}>Capture a live blood slide for instant analysis.</Text>
+            <Text style={styles.cardTitleLight}>{t('dashboard.patient.newScan')}</Text>
+            <Text style={styles.cardDescLight}>{t('dashboard.patient.newScanDesc')}</Text>
             <View style={styles.cardFooter}>
-              <Text style={styles.cardFooterTextLight}>Start</Text>
+              <Text style={styles.cardFooterTextLight}>{t('dashboard.patient.start')}</Text>
               <ArrowRight color="#fff" size={14} />
             </View>
           </TouchableOpacity>
@@ -338,10 +342,10 @@ function PatientDashboard() {
             <View style={[styles.cardIconWrapper, { backgroundColor: '#ede9fe' }]}>
               <FileUp color={T.patientAccent} size={22} />
             </View>
-            <Text style={styles.cardTitleDark}>Upload Report</Text>
-            <Text style={styles.cardDescDark}>Upload a lab report PDF or image.</Text>
+            <Text style={styles.cardTitleDark}>{t('dashboard.patient.uploadReport')}</Text>
+            <Text style={styles.cardDescDark}>{t('dashboard.patient.uploadDesc')}</Text>
             <View style={styles.cardFooter}>
-              <Text style={[styles.cardFooterTextDark, { color: T.patientAccent }]}>Select File</Text>
+              <Text style={[styles.cardFooterTextDark, { color: T.patientAccent }]}>{t('dashboard.patient.selectFile')}</Text>
               <PlusCircle color={T.patientAccent} size={14} />
             </View>
           </TouchableOpacity>
@@ -350,7 +354,7 @@ function PatientDashboard() {
         {/* Health summary tiles */}
         {lastScan && lastScan.markers.length > 0 && (
           <>
-            <SectionHeader title="Latest Markers" onViewAll={() => router.push('/(tabs)/explore')} accentColor={T.patientAccent} />
+            <SectionHeader title={t('dashboard.patient.latestMarkers')} onViewAll={() => router.push('/(tabs)/explore')} accentColor={T.patientAccent} />
             <View style={styles.statsGrid}>
               {lastScan.markers.slice(0, 4).map((m, i) => (
                 <View key={i} style={[styles.statItem, { borderLeftWidth: 3, borderLeftColor: T.patientAccent + '60' }]}>
@@ -364,10 +368,10 @@ function PatientDashboard() {
         )}
 
         {/* History */}
-        <SectionHeader title="My History" onViewAll={() => router.push('/(tabs)/explore')} accentColor={T.patientAccent} />
+        <SectionHeader title={t('dashboard.patient.myHistory')} onViewAll={() => router.push('/(tabs)/explore')} accentColor={T.patientAccent} />
         <View style={styles.activityList}>
           {recentScans.length === 0
-            ? <EmptyState message="Your past analyses will appear here." />
+            ? <EmptyState message={t('dashboard.patient.noHistory')} />
             : recentScans.map(scan => (
               <ScanActivityItem key={scan.id} scan={scan} onPress={() => router.push({ pathname: '/result', params: { id: scan.id } })} />
             ))
@@ -377,7 +381,7 @@ function PatientDashboard() {
         {/* Privacy notice */}
         <View style={styles.privacyCard}>
           <Shield color={T.success} size={18} />
-          <Text style={styles.privacyText}>Your data is encrypted and HIPAA-compliant. Only you and your assigned doctor can view your results.</Text>
+          <Text style={styles.privacyText}>{t('dashboard.patient.privacyNotice')}</Text>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -398,18 +402,20 @@ function StatCard({ label, value, valueColor, labelColor }: { label: string; val
 }
 
 function SectionHeader({ title, onViewAll, accentColor }: { title: string; onViewAll: () => void; accentColor?: string }) {
+  const { t } = useTranslation();
   return (
     <View style={styles.sectionHeader}>
       <Text style={styles.sectionTitle}>{title}</Text>
       <TouchableOpacity onPress={onViewAll}>
-        <Text style={[styles.viewAll, accentColor ? { color: accentColor } : {}]}>View All</Text>
+        <Text style={[styles.viewAll, accentColor ? { color: accentColor } : {}]}>{t('common.viewAll')}</Text>
       </TouchableOpacity>
     </View>
   );
 }
 
 function ScanActivityItem({ scan, onPress }: { scan: StoredScanResult; onPress: () => void }) {
-  const urgency     = scan.urgency ?? 'NORMAL';
+  const { t } = useTranslation();
+  const urgency      = scan.urgency ?? 'NORMAL';
   const urgencyColor =
     urgency === 'CRITICAL' ? T.danger :
     urgency === 'HIGH'     ? T.warning :
@@ -427,7 +433,7 @@ function ScanActivityItem({ scan, onPress }: { scan: StoredScanResult; onPress: 
         <View style={{ flex: 1 }}>
           <Text style={styles.activityTitle} numberOfLines={1}>{scan.caseId}</Text>
           <Text style={styles.activityDesc} numberOfLines={1}>
-            {scan.patientName ? `Patient: ${scan.patientName} · ` : ''}{scan.specimenType}
+            {scan.patientName ? `${t('common.patientLabel')}${scan.patientName} · ` : ''}{scan.specimenType}
           </Text>
         </View>
       </View>
@@ -444,12 +450,13 @@ function ScanActivityItem({ scan, onPress }: { scan: StoredScanResult; onPress: 
 }
 
 function SystemHealthCard({ latencyMs }: { latencyMs: number }) {
+  const { t } = useTranslation();
   const isOptimal = latencyMs > 0 && latencyMs < 50;
   return (
     <View style={styles.healthCard}>
       <View style={styles.healthInfo}>
-        <Text style={styles.healthTitle}>System Health</Text>
-        <Text style={styles.healthDesc}>AI analysis nodes are operating at optimal latency across all clinical modules.</Text>
+        <Text style={styles.healthTitle}>{t('dashboard.doctor.systemHealth')}</Text>
+        <Text style={styles.healthDesc}>{t('dashboard.doctor.systemHealthDesc')}</Text>
       </View>
       <View style={styles.healthStats}>
         <View style={styles.miniChart}>
@@ -460,7 +467,7 @@ function SystemHealthCard({ latencyMs }: { latencyMs: number }) {
         <View style={styles.latency}>
           <Text style={styles.latencyVal}>{latencyMs > 0 ? `${latencyMs}ms` : '—'}</Text>
           <Text style={[styles.latencyLabel, { color: isOptimal ? '#10b981' : '#f59e0b' }]}>
-            {isOptimal ? 'OPTIMAL' : 'CHECKING'}
+            {isOptimal ? t('dashboard.doctor.optimal') : t('dashboard.doctor.checking')}
           </Text>
         </View>
       </View>
@@ -478,16 +485,17 @@ function EmptyState({ message }: { message: string }) {
 }
 
 function LoadingScreen() {
+  const { t } = useTranslation();
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: T.background }}>
       <ActivityIndicator size="large" color={T.primary} />
-      <Text style={{ marginTop: 12, color: T.textSecondary, fontSize: 13 }}>Loading dashboard…</Text>
+      <Text style={{ marginTop: 12, color: T.textSecondary, fontSize: 13 }}>{t('common.loadingDashboard')}</Text>
     </View>
   );
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-//  Styles
+//  Styles (unchanged)
 // ─────────────────────────────────────────────────────────────────────────────
 
 const styles = StyleSheet.create({

@@ -1,0 +1,200 @@
+{
+  "app_name": "हेमो-एज",
+
+  "tabs": {
+    "home": "होम",
+    "scan": "स्कॅन",
+    "history": "इतिहास",
+    "messages": "संदेश",
+    "settings": "सेटिंग्ज",
+    "explore": "एक्सप्लोर"
+  },
+
+  "home": {
+    "greeting_morning": "सुप्रभात",
+    "greeting_afternoon": "नमस्कार",
+    "greeting_evening": "शुभ संध्या",
+    "subtitle": "तुमचा आरोग्य डॅशबोर्ड",
+    "scan_now": "आत्ता स्कॅन करा",
+    "upload_report": "अहवाल अपलोड करा",
+    "start_scan": "स्कॅन सुरू करा",
+    "start_scan_desc": "रक्त नमुन्याचे रिअल-टाइम विश्लेषण करा",
+    "upload_report_desc": "AI विश्लेषणासाठी लॅब अहवाल अपलोड करा",
+    "recent_scans": "अलीकडील स्कॅन",
+    "view_all": "सर्व पहा",
+    "today_tests": "आजचे परीक्षण",
+    "pending": "प्रलंबित",
+    "critical": "गंभीर",
+    "uptime": "अपटाइम"
+  },
+
+  "scan": {
+    "title": "नवीन स्कॅन",
+    "choose_mode": "मोड निवडा",
+    "cell_morphology": "सेल मॉर्फोलॉजी",
+    "cell_morphology_desc": "रिअल-टाइम रक्त पेशी वर्गीकरण",
+    "lab_report_ocr": "लॅब रिपोर्ट OCR",
+    "lab_report_ocr_desc": "लॅब अहवालातून मेट्रिक्स काढा",
+    "upload_image": "प्रतिमा अपलोड करा",
+    "take_photo": "फोटो घ्या",
+    "analyzing": "विश्लेषण होत आहे…",
+    "processing": "नमुना प्रक्रिया…",
+    "complete": "विश्लेषण पूर्ण",
+    "select_file": "फाइल निवडा",
+    "supported_formats": "समर्थित: BMP, TIFF, JPEG, PNG, PDF"
+  },
+
+  "result": {
+    "title": "स्कॅन निकाल",
+    "case_id": "केस ID",
+    "analyzed_on": "विश्लेषण तारीख",
+    "specimen_type": "नमुना प्रकार",
+    "confidence": "विश्वासार्हता",
+    "diagnosis": "निदान",
+    "cell_detection": "सेल डिटेक्शन ओव्हरले",
+    "blast_probability": "ब्लास्ट संभाव्यता",
+    "cells_detected": "आढळलेल्या पेशी",
+    "blast_cells": "ब्लास्ट पेशी",
+    "severity_normal": "सामान्य",
+    "severity_warning": "इशारा",
+    "severity_critical": "गंभीर",
+    "view_full_analysis": "संपूर्ण विश्लेषण पहा →",
+    "export_pdf": "PDF अहवाल निर्यात करा",
+    "go_back": "मागे जा"
+  },
+
+  "history": {
+    "title": "स्कॅन इतिहास",
+    "empty": "अद्याप स्कॅन नाही",
+    "empty_desc": "तुमचा स्कॅन इतिहास येथे दिसेल",
+    "filter_all": "सर्व",
+    "filter_critical": "गंभीर",
+    "filter_normal": "सामान्य",
+    "routine": "नियमित",
+    "urgent": "तातडीचे"
+  },
+
+  "analysis": {
+    "title": "संपूर्ण विश्लेषण",
+    "overall_risk": "एकूण धोका",
+    "predicted_conditions": "अनुमानित स्थिती",
+    "markers": "रक्त मार्कर",
+    "recommendations": "शिफारसी",
+    "disclaimer": "अस्वीकरण",
+    "low": "कमी",
+    "moderate": "मध्यम",
+    "high": "उच्च",
+    "critical": "गंभीर",
+    "normal": "सामान्य",
+    "abnormal": "असामान्य",
+    "borderline": "सीमारेषा"
+  },
+
+  "settings": {
+    "title": "सेटिंग्ज",
+    "account": "खाते",
+    "profile": "प्रोफाइल",
+    "language": "भाषा",
+    "language_desc": "तुमची पसंतीची भाषा निवडा",
+    "notifications": "सूचना",
+    "notifications_desc": "अलर्ट प्राधान्ये व्यवस्थापित करा",
+    "privacy": "गोपनीयता आणि डेटा",
+    "privacy_desc": "GDPR, डेटा निर्यात आणि हटवणे",
+    "export_data": "माझा डेटा निर्यात करा",
+    "delete_account": "खाते हटवा",
+    "about": "याबद्दल",
+    "version": "आवृत्ती",
+    "sign_out": "साइन आउट",
+    "appearance": "स्वरूप",
+    "dark_mode": "डार्क मोड",
+    "biometrics": "बायोमेट्रिक लॉक",
+    "biometrics_desc": "निकाल पाहण्यासाठी फिंगरप्रिंट आवश्यक आहे"
+  },
+
+  "auth": {
+    "login": "साइन इन",
+    "register": "खाते तयार करा",
+    "email": "ईमेल",
+    "password": "पासवर्ड",
+    "full_name": "पूर्ण नाव",
+    "role": "भूमिका",
+    "role_doctor": "डॉक्टर",
+    "role_patient": "रुग्ण",
+    "forgot_password": "पासवर्ड विसरलात?",
+    "no_account": "खाते नाही?",
+    "have_account": "आधीच खाते आहे?",
+    "sign_up": "साइन अप",
+    "sign_in": "साइन इन",
+    "signing_in": "साइन इन होत आहे…",
+    "logout": "साइन आउट",
+    "switch_account": "खाते बदला"
+  },
+
+  "messages": {
+    "title": "संदेश",
+    "new_message": "नवीन संदेश",
+    "empty": "अद्याप कोणतेही संदेश नाहीत",
+    "empty_desc": "तुमच्या केअर टीमचे संदेश येथे दिसतील",
+    "send": "पाठवा",
+    "type_message": "संदेश लिहा…",
+    "read": "वाचले",
+    "unread": "न वाचलेले"
+  },
+
+  "explore": {
+    "title": "एक्सप्लोर",
+    "patients": "रुग्ण",
+    "search_patients": "रुग्ण शोधा…",
+    "no_patients": "कोणताही रुग्ण लिंक नाही",
+    "link_patient": "रुग्ण लिंक करा"
+  },
+
+  "common": {
+    "loading": "लोड होत आहे…",
+    "error": "काहीतरी चूक झाली",
+    "retry": "पुन्हा प्रयत्न करा",
+    "cancel": "रद्द करा",
+    "confirm": "पुष्टी करा",
+    "save": "जतन करा",
+    "delete": "हटवा",
+    "edit": "संपादित करा",
+    "close": "बंद करा",
+    "back": "मागे",
+    "next": "पुढे",
+    "done": "झाले",
+    "yes": "होय",
+    "no": "नाही",
+    "ok": "ठीक आहे",
+    "search": "शोधा",
+    "filter": "फिल्टर",
+    "refresh": "रिफ्रेश",
+    "share": "शेअर करा",
+    "upload": "अपलोड करा",
+    "permissions_required": "परवानगी आवश्यक",
+    "camera_permission": "नमुने स्कॅन करण्यासाठी कॅमेरा प्रवेश आवश्यक आहे",
+    "storage_permission": "अहवाल अपलोड करण्यासाठी स्टोरेज प्रवेश आवश्यक आहे"
+  },
+
+  "errors": {
+    "network": "नेटवर्क त्रुटी. कृपया तुमचे कनेक्शन तपासा.",
+    "auth_failed": "प्रमाणीकरण अयशस्वी. कृपया पुन्हा प्रयत्न करा.",
+    "scan_failed": "स्कॅन अयशस्वी. कृपया पुन्हा प्रयत्न करा.",
+    "upload_failed": "अपलोड अयशस्वी. कृपया पुन्हा प्रयत्न करा.",
+    "permission_denied": "परवानगी नाकारली.",
+    "not_found": "निकाल सापडला नाही.",
+    "invalid_file": "असमर्थित फाइल प्रकार. कृपया BMP, TIFF, JPEG, PNG, किंवा PDF वापरा."
+  },
+
+  "dua": {
+    "title": "डेटा वापर करार",
+    "body": "या निर्यातात संरक्षित आरोग्य माहिती (PHI) आहे. पुढे जाऊन तुम्ही पुष्टी करता की तुम्ही HIPAA/GDPR अंतर्गत हा डेटा हाताळण्यास अधिकृत आहात.",
+    "accept": "स्वीकारा आणि सुरू ठेवा",
+    "decline": "नकार द्या"
+  },
+
+  "biometric": {
+    "prompt": "स्कॅन निकाल पाहण्यासाठी तुमची ओळख सत्यापित करा",
+    "fallback": "पासकोड वापरा",
+    "failed": "बायोमेट्रिक सत्यापन अयशस्वी"
+  }
+}

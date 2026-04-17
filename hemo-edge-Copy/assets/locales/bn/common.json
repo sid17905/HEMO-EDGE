@@ -1,0 +1,200 @@
+{
+  "app_name": "হেমো-এজ",
+
+  "tabs": {
+    "home": "হোম",
+    "scan": "স্ক্যান",
+    "history": "ইতিহাস",
+    "messages": "বার্তা",
+    "settings": "সেটিংস",
+    "explore": "অন্বেষণ"
+  },
+
+  "home": {
+    "greeting_morning": "শুভ সকাল",
+    "greeting_afternoon": "নমস্কার",
+    "greeting_evening": "শুভ সন্ধ্যা",
+    "subtitle": "আপনার স্বাস্থ্য ড্যাশবোর্ড",
+    "scan_now": "এখনই স্ক্যান করুন",
+    "upload_report": "রিপোর্ট আপলোড করুন",
+    "start_scan": "স্ক্যান শুরু করুন",
+    "start_scan_desc": "রক্তের নমুনা রিয়েল-টাইমে বিশ্লেষণ করুন",
+    "upload_report_desc": "AI বিশ্লেষণের জন্য ল্যাব রিপোর্ট আপলোড করুন",
+    "recent_scans": "সাম্প্রতিক স্ক্যান",
+    "view_all": "সব দেখুন",
+    "today_tests": "আজকের পরীক্ষা",
+    "pending": "মুলতুবি",
+    "critical": "জরুরি",
+    "uptime": "আপটাইম"
+  },
+
+  "scan": {
+    "title": "নতুন স্ক্যান",
+    "choose_mode": "মোড বেছে নিন",
+    "cell_morphology": "সেল মরফোলজি",
+    "cell_morphology_desc": "রিয়েল-টাইম রক্ত কোষ শ্রেণীবিভাগ",
+    "lab_report_ocr": "ল্যাব রিপোর্ট OCR",
+    "lab_report_ocr_desc": "ল্যাব রিপোর্ট থেকে মেট্রিক্স বের করুন",
+    "upload_image": "ছবি আপলোড করুন",
+    "take_photo": "ছবি তুলুন",
+    "analyzing": "বিশ্লেষণ হচ্ছে…",
+    "processing": "নমুনা প্রক্রিয়াকরণ…",
+    "complete": "বিশ্লেষণ সম্পন্ন",
+    "select_file": "ফাইল বেছে নিন",
+    "supported_formats": "সমর্থিত: BMP, TIFF, JPEG, PNG, PDF"
+  },
+
+  "result": {
+    "title": "স্ক্যান ফলাফল",
+    "case_id": "কেস ID",
+    "analyzed_on": "বিশ্লেষণের তারিখ",
+    "specimen_type": "নমুনার ধরন",
+    "confidence": "নির্ভরযোগ্যতা",
+    "diagnosis": "রোগ নির্ণয়",
+    "cell_detection": "সেল ডিটেকশন ওভারলে",
+    "blast_probability": "ব্লাস্ট সম্ভাবনা",
+    "cells_detected": "শনাক্তকৃত কোষ",
+    "blast_cells": "ব্লাস্ট কোষ",
+    "severity_normal": "স্বাভাবিক",
+    "severity_warning": "সতর্কতা",
+    "severity_critical": "জরুরি",
+    "view_full_analysis": "সম্পূর্ণ বিশ্লেষণ দেখুন →",
+    "export_pdf": "PDF রিপোর্ট রপ্তানি করুন",
+    "go_back": "ফিরে যান"
+  },
+
+  "history": {
+    "title": "স্ক্যান ইতিহাস",
+    "empty": "এখনও কোনো স্ক্যান নেই",
+    "empty_desc": "আপনার স্ক্যান ইতিহাস এখানে দেখাবে",
+    "filter_all": "সব",
+    "filter_critical": "জরুরি",
+    "filter_normal": "স্বাভাবিক",
+    "routine": "নিয়মিত",
+    "urgent": "জরুরি"
+  },
+
+  "analysis": {
+    "title": "সম্পূর্ণ বিশ্লেষণ",
+    "overall_risk": "সামগ্রিক ঝুঁকি",
+    "predicted_conditions": "পূর্বাভাসিত অবস্থা",
+    "markers": "রক্ত মার্কার",
+    "recommendations": "সুপারিশ",
+    "disclaimer": "দাবিত্যাগ",
+    "low": "কম",
+    "moderate": "মাঝারি",
+    "high": "উচ্চ",
+    "critical": "জরুরি",
+    "normal": "স্বাভাবিক",
+    "abnormal": "অস্বাভাবিক",
+    "borderline": "সীমারেখা"
+  },
+
+  "settings": {
+    "title": "সেটিংস",
+    "account": "অ্যাকাউন্ট",
+    "profile": "প্রোফাইল",
+    "language": "ভাষা",
+    "language_desc": "আপনার পছন্দের ভাষা বেছে নিন",
+    "notifications": "বিজ্ঞপ্তি",
+    "notifications_desc": "সতর্কতার পছন্দ পরিচালনা করুন",
+    "privacy": "গোপনীয়তা ও ডেটা",
+    "privacy_desc": "GDPR, ডেটা রপ্তানি এবং মুছে ফেলা",
+    "export_data": "আমার ডেটা রপ্তানি করুন",
+    "delete_account": "অ্যাকাউন্ট মুছুন",
+    "about": "সম্পর্কে",
+    "version": "সংস্করণ",
+    "sign_out": "সাইন আউট",
+    "appearance": "রূপ",
+    "dark_mode": "ডার্ক মোড",
+    "biometrics": "বায়োমেট্রিক লক",
+    "biometrics_desc": "ফলাফল দেখতে আঙুলের ছাপ প্রয়োজন"
+  },
+
+  "auth": {
+    "login": "সাইন ইন",
+    "register": "অ্যাকাউন্ট তৈরি করুন",
+    "email": "ইমেইল",
+    "password": "পাসওয়ার্ড",
+    "full_name": "পুরো নাম",
+    "role": "ভূমিকা",
+    "role_doctor": "ডাক্তার",
+    "role_patient": "রোগী",
+    "forgot_password": "পাসওয়ার্ড ভুলে গেছেন?",
+    "no_account": "অ্যাকাউন্ট নেই?",
+    "have_account": "ইতিমধ্যে অ্যাকাউন্ট আছে?",
+    "sign_up": "সাইন আপ",
+    "sign_in": "সাইন ইন",
+    "signing_in": "সাইন ইন হচ্ছে…",
+    "logout": "সাইন আউট",
+    "switch_account": "অ্যাকাউন্ট পরিবর্তন করুন"
+  },
+
+  "messages": {
+    "title": "বার্তা",
+    "new_message": "নতুন বার্তা",
+    "empty": "এখনও কোনো বার্তা নেই",
+    "empty_desc": "আপনার কেয়ার টিমের বার্তা এখানে দেখাবে",
+    "send": "পাঠান",
+    "type_message": "বার্তা লিখুন…",
+    "read": "পড়া হয়েছে",
+    "unread": "অপঠিত"
+  },
+
+  "explore": {
+    "title": "অন্বেষণ",
+    "patients": "রোগীরা",
+    "search_patients": "রোগী খুঁজুন…",
+    "no_patients": "কোনো রোগী সংযুক্ত নেই",
+    "link_patient": "রোগী সংযুক্ত করুন"
+  },
+
+  "common": {
+    "loading": "লোড হচ্ছে…",
+    "error": "কিছু একটা ভুল হয়েছে",
+    "retry": "আবার চেষ্টা করুন",
+    "cancel": "বাতিল",
+    "confirm": "নিশ্চিত করুন",
+    "save": "সংরক্ষণ করুন",
+    "delete": "মুছুন",
+    "edit": "সম্পাদনা করুন",
+    "close": "বন্ধ করুন",
+    "back": "পেছনে",
+    "next": "পরবর্তী",
+    "done": "সম্পন্ন",
+    "yes": "হ্যাঁ",
+    "no": "না",
+    "ok": "ঠিক আছে",
+    "search": "খুঁজুন",
+    "filter": "ফিল্টার",
+    "refresh": "রিফ্রেশ",
+    "share": "শেয়ার করুন",
+    "upload": "আপলোড করুন",
+    "permissions_required": "অনুমতি প্রয়োজন",
+    "camera_permission": "নমুনা স্ক্যান করতে ক্যামেরা অ্যাক্সেস প্রয়োজন",
+    "storage_permission": "রিপোর্ট আপলোড করতে স্টোরেজ অ্যাক্সেস প্রয়োজন"
+  },
+
+  "errors": {
+    "network": "নেটওয়ার্ক ত্রুটি। আপনার সংযোগ পরীক্ষা করুন।",
+    "auth_failed": "প্রমাণীকরণ ব্যর্থ হয়েছে। আবার চেষ্টা করুন।",
+    "scan_failed": "স্ক্যান ব্যর্থ হয়েছে। আবার চেষ্টা করুন।",
+    "upload_failed": "আপলোড ব্যর্থ হয়েছে। আবার চেষ্টা করুন।",
+    "permission_denied": "অনুমতি অস্বীকৃত।",
+    "not_found": "ফলাফল পাওয়া যায়নি।",
+    "invalid_file": "অসমর্থিত ফাইল ধরন। BMP, TIFF, JPEG, PNG, বা PDF ব্যবহার করুন।"
+  },
+
+  "dua": {
+    "title": "ডেটা ব্যবহার চুক্তি",
+    "body": "এই রপ্তানিতে সুরক্ষিত স্বাস্থ্য তথ্য (PHI) রয়েছে। এগিয়ে যাওয়ার মাধ্যমে আপনি নিশ্চিত করছেন যে আপনি HIPAA/GDPR-এর অধীনে এই ডেটা পরিচালনা করতে অনুমোদিত।",
+    "accept": "গ্রহণ করুন এবং চালিয়ে যান",
+    "decline": "প্রত্যাখ্যান করুন"
+  },
+
+  "biometric": {
+    "prompt": "স্ক্যান ফলাফল দেখতে আপনার পরিচয় যাচাই করুন",
+    "fallback": "পাসকোড ব্যবহার করুন",
+    "failed": "বায়োমেট্রিক যাচাই ব্যর্থ হয়েছে"
+  }
+}

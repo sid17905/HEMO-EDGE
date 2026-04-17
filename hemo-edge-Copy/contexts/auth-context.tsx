@@ -1,33 +1,44 @@
 // FILE: contexts/auth-context.tsx
+// Phase 5 — Pillar A: signOut, admin role added, account switch support
 import React, { createContext, useContext } from 'react';
 import type { User as FirebaseUser } from 'firebase/auth';
 
 // ─────────────────────────────────────────────────────────────────────────────
-//  Context type — now includes actions so any child can call login/logout
+//  Context type
+//  Phase 5: role now includes 'admin' (read from custom claim, never issued here)
+//           signOut() added — clears local state, cancels listeners, redirects
 // ─────────────────────────────────────────────────────────────────────────────
 
+export type UserRole = 'doctor' | 'patient' | 'admin';
+
 interface AuthContextValue {
-  user:      FirebaseUser | null;
-  role:      'doctor' | 'patient' | null;
-  isLoading: boolean;
-  error:     string | null;
-  login:     (email: string, password: string) => Promise<void>;
-  register:  (email: string, password: string, role: 'doctor' | 'patient', fullName: string) => Promise<void>;
-  logout:    () => Promise<void>;
+  user:         FirebaseUser | null;
+  role:         UserRole | null;
+  isLoading:    boolean;
+  error:        string | null;
+  login:        (email: string, password: string) => Promise<void>;
+  register:     (email: string, password: string, role: 'doctor' | 'patient', fullName: string) => Promise<void>;
+  logout:       () => Promise<void>;
+  /** Phase 5: alias of logout — explicit sign-out intent, triggers audit log */
+  signOut:      () => Promise<void>;
+  /** Phase 5: re-authenticate with a cached account token */
+  switchAccount: (customToken: string) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextValue>({
-  user:      null,
-  role:      null,
-  isLoading: true,
-  error:     null,
-  login:     async () => {},
-  register:  async () => {},
-  logout:    async () => {},
+  user:          null,
+  role:          null,
+  isLoading:     true,
+  error:         null,
+  login:         async () => {},
+  register:      async () => {},
+  logout:        async () => {},
+  signOut:       async () => {},
+  switchAccount: async () => {},
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-//  Provider — value is injected from the root layout (which owns useAuth())
+//  Provider — value injected from root layout which owns useAuth()
 // ─────────────────────────────────────────────────────────────────────────────
 
 export function AuthProvider({
@@ -49,3 +60,4 @@ export function useAuthContext(): AuthContextValue {
 }
 
 export { AuthContext };
+export type { AuthContextValue };

@@ -7,12 +7,14 @@ import { ActivityIndicator, View } from 'react-native';
 import 'react-native-reanimated';
 
 import { useColorScheme } from '@/hooks/use-color-scheme';
+import '@/lib/i18n'; // must be imported before any screen renders — initialises i18next
 import { useAuth } from '@/hooks/use-auth';
 import { AuthProvider } from '@/contexts/auth-context';
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
-  const { user, role, isLoading } = useAuth();
+  const auth = useAuth();
+  const { user, role, isLoading } = auth;
   const segments = useSegments();
 
   // ── Auth guard ─────────────────────────────────────────────────────────────
@@ -40,7 +42,7 @@ export default function RootLayout() {
   }
 
   return (
-    <AuthProvider value={{ user, role, isLoading }}>
+    <AuthProvider value={auth}>
       <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
         <Stack>
           {/* Auth screen */}
